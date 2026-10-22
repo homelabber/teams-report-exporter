@@ -1,0 +1,26 @@
+name: Build Windows portable app
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Publish portable executable
+        run: dotnet publish Desktop\TeamsReportExporterDesktop.csproj --configuration Release --runtime win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o Desktop\publish\win-x64
+      - name: Upload executable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: teams-report-exporter-win-x64
+          path: Desktop\publish\win-x64\TeamsReportExporterDesktop.exe

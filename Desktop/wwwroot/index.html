@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5" />
+  <title>Teams Report Exporter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">T</span><span>Teams Report Exporter</span></div>
+      <nav aria-label="Primary navigation">
+        <button class="nav-item active" data-view="reports"><span>▦</span> Reports</button>
+        <button class="nav-item" data-view="exports"><span>↥</span> Export history</button>
+        <button class="nav-item" data-view="settings"><span>⚙</span> Settings</button>
+      </nav>
+      <div class="sidebar-footer"><span class="status-dot"></span><span>Ready to connect</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow">MICROSOFT TEAMS ADMINISTRATION</p><h1>Reports</h1></div>
+        <div class="account"><div class="avatar">AD</div><div><strong id="accountName">Not signed in</strong><small id="accountTenant">Connect your Microsoft 365 account</small></div><button id="signInButton" class="button primary">Sign in</button></div>
+      </header>
+
+      <section id="reportsView" class="view active-view">
+        <div class="hero-card"><div><span class="pill">LOCAL EXPORT TOOL</span><h2>Export Teams data with confidence.</h2><p>Choose an available report, apply filters, preview the results, and export to a spreadsheet—without PowerShell.</p></div><div class="hero-illustration"><div class="document"><span>▦</span><b>CSV</b></div><div class="arrow">→</div><div class="document green"><span>▤</span><b>Excel</b></div></div></div>
+        <div id="signedOutNotice" class="notice"><span class="notice-icon">i</span><div><strong>Sign in to discover reports</strong><p>We’ll show only reports your account and tenant can access. This demo includes Teams Voice users.</p></div><button id="noticeSignIn" class="button secondary">Sign in</button></div>
+        <div class="section-heading"><div><h2>Available reports</h2><p>Reports are checked against your permissions and current Microsoft support.</p></div><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search reports" /></label></div>
+        <div id="reportGrid" class="report-grid"></div>
+      </section>
+
+      <section id="exportsView" class="view"><div class="section-heading"><div><h2>Export history</h2><p>Files created on this computer.</p></div></div><div id="historyEmpty" class="empty-state"><span>↥</span><h3>No exports yet</h3><p>Your completed exports will appear here.</p></div><div id="historyList" class="history-list"></div></section>
+      <section id="settingsView" class="view"><div class="section-heading"><div><h2>Settings</h2><p>Local preferences for Teams Report Exporter.</p></div></div><div class="settings-card"><div><strong>Report catalog</strong><p>Demo catalog is enabled. A production connector can refresh this catalog from supported Microsoft APIs.</p></div><span class="pill success">Up to date</span></div><div class="settings-card"><div><strong>Portable mode</strong><p>This prototype stores no credentials and runs entirely in your browser.</p></div><span class="pill">Enabled</span></div></section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><button id="closeModal" class="close" aria-label="Close">×</button><div id="modalContent"></div></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
